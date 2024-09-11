@@ -32,7 +32,7 @@ class Server:
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """getting page using two variables"""
-        assert type(page) == int and type(page_size) == int
+        assert isinstance(page, int) and isinstance(page_size, int)
         assert page > 0 and page_size > 0
 
         start, end = index_range(page, page_size)
@@ -48,7 +48,9 @@ class Server:
         """getting a dict info about the page"""
         data = self.get_page(page, page_size)
         # big cost
-        next_page = page + 1 if self.get_page(page + 1, page_size) != [] else None
+        next_page = (
+            page + 1 if self.get_page(page + 1, page_size) != [] else None
+        )
         prev_page = page - 1 if page >= 2 else None
 
         info = {
