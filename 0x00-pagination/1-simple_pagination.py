@@ -31,16 +31,14 @@ class Server:
                 page_size, int
             ), "raised when page and/or page_size are not ints"
         except AssertionError as err:
-            raise "AssertionError " + err 
+            raise "AssertionError " + err
 
         page -= 1
         start = page * page_size
         end = start + page_size
 
-        # end is passing the end of csv
         if end > len(self.__dataset):
             end = -1
-        # start is passing the csv file
         if start > len(self.__dataset):
             return []
         return self.__dataset[start: end + 1]
