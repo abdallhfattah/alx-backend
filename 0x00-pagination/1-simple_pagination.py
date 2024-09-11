@@ -37,8 +37,4 @@ class Server:
         start = page * page_size
         end = start + page_size
 
-        if end > len(self.__dataset):
-            end = -1
-        if start > len(self.__dataset):
-            return []
-        return self.__dataset[start: end + 1]
+        return self.__dataset[start: end]
