@@ -24,13 +24,14 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
+        """getting page using two variables"""
         try:
             assert page > 0 and page_size > 0, "raised with negative values"
             assert isinstance(page, int) and isinstance(
                 page_size, int
             ), "raised when page and/or page_size are not ints"
         except AssertionError as err:
-            print("AssertionError ", err)
+            raise "AssertionError " + err 
 
         page -= 1
         start = page * page_size
@@ -42,4 +43,4 @@ class Server:
         # start is passing the csv file
         if start > len(self.__dataset):
             return []
-        return self.__dataset[start : end + 1]
+        return self.__dataset[start: end + 1]
