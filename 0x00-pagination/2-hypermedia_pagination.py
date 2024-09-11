@@ -47,10 +47,11 @@ class Server:
     def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
         """getting a dict info about the page"""
         data = self.get_page(page, page_size)
-        # big cost
-        next_page = (
-            page + 1 if self.get_page(page + 1, page_size) != [] else None
-        )
+
+        next_page = page + 1
+        if index_range(page, page_size)[1] >= len(self.__dataset):
+            next_page = None
+
         prev_page = page - 1 if page >= 2 else None
 
         info = {
