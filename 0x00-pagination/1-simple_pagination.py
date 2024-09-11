@@ -2,7 +2,14 @@
 """simple pagination"""
 import csv
 import math
-from typing import List
+
+from typing import List, Tuple
+
+
+def index_range(page: int, page_size: int) -> Tuple[int, int]:
+    """index range of some page"""
+    page -= 1
+    return (page * page_size, page_size * (1 + page))
 
 
 class Server:
@@ -25,20 +32,14 @@ class Server:
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """getting page using two variables"""
-        try:
-            assert page > 0 and page_size > 0, "raised with negative values"
-            assert isinstance(page, int) and isinstance(
-                page_size, int
-            ), "raised when page and/or page_size are not ints"
-        except AssertionError as err:
-            raise "AssertionError " + err
+        assert type(page) == int and type(page_size) == int
+        assert page > 0 and page_size > 0
 
-        page -= 1
-        start = page * page_size
-        end = start + page_size
-
-        if end > self.__dataset.__len__:
+        start, end = index_range(page, page_size)
+        data = self.dataset()
+        if end > len(data):
             end = -1
-        if start > self.__dataset.__len__:
+        if start > len(data):
             start = end
-        return self.__dataset[start:end]
+
+        return data[start:end]
