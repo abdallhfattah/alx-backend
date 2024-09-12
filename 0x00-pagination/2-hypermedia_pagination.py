@@ -47,6 +47,7 @@ class Server:
     def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
         """getting a dict info about the page"""
         data = self.get_page(page, page_size)
+
         start, end = index_range(page, page_size)
         next_page = page + 1 if end < len(self.__dataset) else None
         prev_page = page - 1 if start > 0 else None
