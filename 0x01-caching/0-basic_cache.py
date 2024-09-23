@@ -10,6 +10,9 @@ from basic_caching import BaseCaching
 
 
 class BasicCache(BaseCaching):
+    """
+    Basic Caching
+    """
 
     @override
     def get(self, key):
