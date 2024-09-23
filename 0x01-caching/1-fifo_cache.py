@@ -3,10 +3,8 @@
   basic caching
 """
 
-from typing import override
 
 from queue import Queue
-
 from base_caching import BaseCaching
 
 
@@ -21,12 +19,10 @@ class FIFOCache(BaseCaching):
         # FIFO mimic
         self.queue = Queue(maxlen=super.MAX_ITEMS)
 
-    @override
     def get(self, key):
         """Get an item by key"""
         return self.cache_data.get(key, None)
 
-    @override
     def put(self, key, item):
         """
         Add an item in the cache
