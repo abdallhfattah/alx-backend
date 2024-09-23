@@ -4,7 +4,7 @@
 """
 
 
-from queue import Queue
+from collections import OrderedDict
 from base_caching import BaseCaching
 
 
@@ -17,7 +17,7 @@ class FIFOCache(BaseCaching):
         """doc"""
         super().__init__()
         # FIFO mimic
-        self.queue = Queue(BaseCaching.MAX_ITEMS)
+        self.cache_data = OrderedDict()
 
     def get(self, key):
         """Get an item by key"""
