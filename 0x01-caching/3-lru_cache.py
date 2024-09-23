@@ -24,6 +24,7 @@ class LRUCache(BaseCaching):
         # indicate that it been used
         if key is not None and key in self.cache_data:
             self.cache_data.move_to_end(key, last=False)
+
         return self.cache_data.get(key, None)
 
     def put(self, key, item):
@@ -38,4 +39,4 @@ class LRUCache(BaseCaching):
             print(f"DISCARD: {first_key}")
 
         self.cache_data[key] = item
-        self.cache_data.move_to_end(key, last=True)
+        self.cache_data.move_to_end(key, last=False)
