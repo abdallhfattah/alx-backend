@@ -15,9 +15,9 @@ class FIFOCache(BaseCaching):
 
     def __init__(self):
         """doc"""
-        super.__init__()
+        super().__init__()
         # FIFO mimic
-        self.queue = Queue(maxlen=super.MAX_ITEMS)
+        self.queue = Queue(BaseCaching.MAX_ITEMS)
 
     def get(self, key):
         """Get an item by key"""
@@ -30,10 +30,8 @@ class FIFOCache(BaseCaching):
         if key is None or item is None:
             return
 
-        if self.queue.full():
-            key = self.queue.get()
-            self.cache_data.pop(key)
-            print("DISCARD: {}".format(key))
+        if len(self.cache_data) > BaseCaching.MAX_ITEMS:
+            first_key, _ = self.cache_data.popitem(last=False)
+            print(f"DISCARD: {first_key}")
 
-        self.queue.put(key)
         self.cache_data[key] = item
