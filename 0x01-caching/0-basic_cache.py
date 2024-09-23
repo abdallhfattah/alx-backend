@@ -14,7 +14,7 @@ class BasicCache(BaseCaching):
 
     def get(self, key):
         """Get an item by key"""
-        self.cache_data.get(key, None)
+        return self.cache_data.get(key, None)
 
     def put(self, key, item):
         """
