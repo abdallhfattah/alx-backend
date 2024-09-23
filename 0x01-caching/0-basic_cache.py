@@ -22,26 +22,20 @@ class BasicCache(BaseCaching):
             key (any): key to retrive the data
 
         Returns:
-            object : the object associated with the key passed
+            item : the item associated with the key passed
             None : no key for that item
         """
-
-        if key in self.cache_data:
-            return self.cache_data[key]
-
-        return None
+        self.cache_data.get(key, None)
 
     @override
-    def put(self, key, object):
+    def put(self, key, item):
         """
         Add an item in the cache
 
 
         Args:
-            key (any): unquie key for object
-            object (any): object
+            key (any): unquie key for item
+            item (any): item
         """
-        if (key or object) is None:
-            return
-
-        self.cache_data[key] = object
+        if key is not None and item is not None:
+            self.cache_data[key] = item
