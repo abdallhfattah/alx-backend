@@ -3,9 +3,6 @@
   basic caching
 """
 
-from typing import override
-
-
 from basic_caching import BaseCaching
 
 
@@ -14,7 +11,6 @@ class BasicCache(BaseCaching):
     Basic Caching
     """
 
-    @override
     def get(self, key):
         """Get an item by key
 
@@ -27,7 +23,6 @@ class BasicCache(BaseCaching):
         """
         self.cache_data.get(key, None)
 
-    @override
     def put(self, key, item):
         """
         Add an item in the cache
