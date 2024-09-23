@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""
-  basic caching
-"""
+
+'''Task 1: FIFO caching
+'''
 
 
 from collections import OrderedDict
@@ -9,24 +9,19 @@ from base_caching import BaseCaching
 
 
 class FIFOCache(BaseCaching):
-    """
-    Class utilizing FIFO in strategy to cahce items
-    """
+    '''A class `FIFOCache` that inherits from
+       `BaseCaching` and is a caching system.
+    '''
 
     def __init__(self):
-        """doc"""
         super().__init__()
-        # FIFO mimic
         self.cache_data = OrderedDict()
 
-    def get(self, key):
-        """Get an item by key"""
-        return self.cache_data.get(key, None)
-
     def put(self, key, item):
-        """
-        Add an item in the cache
-        """
+        '''assign to the dictionary `self.cache_data` the
+           `item` value for the key `key`
+        '''
+
         if key is None or item is None:
             return
 
@@ -35,3 +30,8 @@ class FIFOCache(BaseCaching):
             print(f"DISCARD: {first_key}")
 
         self.cache_data[key] = item
+
+    def get(self, key):
+        '''return the value in `self.cache_data` linked to `key`
+        '''
+        return self.cache_data.get(key, None)
